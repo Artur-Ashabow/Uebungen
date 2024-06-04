@@ -11,6 +11,10 @@ def count_a_number(numbers, number):
 
 print("Number of equal numbers: ", count_a_number([1, 4, 5, 7, 4, 6, 8], 4))
 
+def test_count_a_number():
+    result = count_a_number([1, 4, 5, 7, 4, 6, 8], 4)
+    assert result == 2, "This should return 2 because the num 4 is two times in this list " + str(result)
+
 print("-" * 80)
 
 
@@ -19,12 +23,11 @@ def play_with_lists(numbers, number):
     reversed_list.reverse()
     print("The reversed list: ", reversed_list)
 
-    new_list = numbers
+    new_list = numbers.copy()
     i = new_list.index(number)
     new_list[i] = 1
     print("The new list with 'number' replaced by 1:", new_list)
 
-    sorted_list = numbers
     sorted_list = sorted(numbers, reverse=True)
     #sorted_list.sort(reverse=True)
     print("The sorted list:", sorted_list, "\n", numbers)
@@ -61,6 +64,9 @@ def remove_duplicates(items):
 
 remove_duplicates(["apple", "pear", "ananas", "apple", "banana", "banana"])
 
+def test_remove_duplicates():
+    result = remove_duplicates(["apple", "pear", "ananas", "apple", "banana", "banana"])
+    assert result == ['ananas', 'apple', 'banana', 'pear']
 
 def remove_duplicates_my_way(items):
     new_item_list = []
@@ -73,6 +79,9 @@ def remove_duplicates_my_way(items):
 
 remove_duplicates_my_way([1, 1, 2, 3, 5, 5, 4, 6, 9, 9, 8, 7])
 
+def test_remove_duplicates_my_way():
+    assert remove_duplicates([1, 1, 2, 3, 5, 5, 4, 6, 9, 9, 8, 7]) == [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
 print("-" * 80)
 
 
@@ -80,6 +89,19 @@ def describe_computer(computer):
     brand = computer.setdefault("Brand", "unknown Brand")
     c_type = computer.setdefault("Type", "unknown Type")
     price = computer.setdefault("Price", "unknown Price")
+    #
+    # if "Type" in computer:
+    #     c_type = computer["Type"]
+    # else:
+    #     c_type = "unknown Type"
+    # if "Brand" in computer:
+    #     brand = computer["Brand"]
+    # else:
+    #     brand = "unknown Brand"
+    # if "Price" in computer:
+    #     price = computer["Price"]
+    # else:
+    #     price = "unknown Price"
 
     print(f"You have a {c_type} from {brand} that costs {price}€.")
 
